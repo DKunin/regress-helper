@@ -1,0 +1,31 @@
+swagger: '2.0'
+info:
+  title: MiniShop API
+  version: 1.0.0
+basePath: /v1
+paths:
+  /products:
+    get: 
+      responses:
+        '200':
+          description: all products
+          schema:
+            type: array
+            items: 
+              type: object
+  /wishlist:
+    post:
+      parameters:
+        - name: productIdBody
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              productId:
+                type: integer
+            required:
+              - productId
+      responses:
+        '201':
+          description: Created

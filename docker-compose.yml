@@ -1,0 +1,31 @@
+version: "3"
+services:
+  mini-shop:
+    build: .
+    environment: 
+      - DB_HOST=mysql
+      - DB_USER=root
+      - DB_PASSWORD=secret
+      - SYSLOG_HOST=syslog
+    depends_on:
+      - mysql
+      - syslog
+    restart: always
+    ports:
+      - "9009:9009"
+  # metrics:
+  #   image: hopsoft/graphite-statsd
+  #   ports:
+  #     - "80:80"
+  mysql:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret
+    ports: 
+      - "3306:3306"
+  syslog:
+    build: ./syslogdummy/
+    container_name: syslog
+    restart: always
+    ports:
+      - "514:514/udp"
