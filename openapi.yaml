@@ -1,31 +1,31 @@
 swagger: '2.0'
 info:
-  title: MiniShop API
+  title: RegressHelper API
   version: 1.0.0
 basePath: /v1
 paths:
-  /products:
+  /testUsers:
     get: 
       responses:
         '200':
-          description: all products
+          description: all testUsers
           schema:
             type: array
             items: 
               type: object
-  /wishlist:
+
     post:
       parameters:
-        - name: productIdBody
+        - name: productBody
           in: body
           required: true
           schema:
             type: object
             properties:
-              productId:
-                type: integer
+              name:
+                type: string
             required:
-              - productId
+              - name
       responses:
         '201':
           description: Created

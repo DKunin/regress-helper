@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regress Helper</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.0/vue.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.3.1/vue-resource.min.js"></script>
+</head>
+<body>
+    <div id="app"></div> 
+</body>
+<script>
+const template = `
+    <main>
+        <input type="text" v-model="query" />
+        <ul>
+            <li v-for="item in queriedList">
+                {{ item.id }}
+                {{ item.name }}
+                {{ item.login }}
+                {{ item.password }}
+                {{ item.user_id }}
+                {{ item.user_profile_id }}
+                <button @click="removeItem(item.id)">x</button>
+            </li>
+        </ul>
+        <form @submit.prevent="handleFormSubmit">
+            <li><label>name: <input type="text" v-model="name" name="name"/></label></li>
+            <li><label>login: <input type="text" v-model="login" name="login"/></label></li>
+            <li><label>password: <input type="text" v-model="password" name="password"/></label></li>
+            <li><label>user_id: <input type="text" v-model="user_id" name="user_id"/></label></li>
+            <li><label>user_profile_id: <input type="text" v-model="user_profile_id" name="user_profile_id"/></label></li>
+            <button type="submit">+</button>
+        </form>
+    </main>
+`;
+
+new Vue({
+    el: '#app',
+    template,
+    name: 'app',
+    data() {
+        return {
+            query: '',
+            name: '',
+            login: '',
+            password: '',
+            user_id: '',
+            user_profile_id: '',
+            list: [],
+            loading: false
+        };
+    },
+    mounted() {
+        this.updateData();
+    },
+    computed: {
+        queriedList() {
+            if (!this.query) {
+                return this.list;
+            }
+            return this.list.filter((singleItem) => singleItem.name.toLowerCase().includes(this.query.toLowerCase()));
+        }
+    },
+    methods: {
+        handleFormSubmit() {
+            const newObject = {
+                name: this.name,
+                login: this.login,
+                password: this.password,
+                user_id: this.user_id,
+                user_profile_id: this.user_profile_id
+            };
+            this.$http.post('/v1/testUsers', newObject).then(response => {
+                if (response.ok) {
+                    this.updateData();
+                }
+            });
+        },
+        removeItem(id) {
+            this.$http.post('/v1/testUsers/remove', { id: id }).then(response => {
+                if (response.ok) {
+                    this.updateData();
+                }
+            });
+        },
+        updateData() {
+            this.loading = true;
+
+            this.$http.get('/v1/testUsers').then(
+                response => {
+                    this.loading = false;
+                    this.list = response.body;
+                },
+                () => {
+                    this.loading = false;
+                    this.list = [];
+                }
+            );
+        }
+    }
+});
+</script>
+</html>

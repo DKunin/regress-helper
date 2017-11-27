@@ -1,18 +1,14 @@
 {
-  "name": "node-workshop",
+  "name": "regress-helper",
   "version": "1.0.0",
-  "description": "workshop material for frontfest",
+  "description": "",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "dkunin",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ffru-workshop/minishop.git"
-  },
   "dependencies": {
     "@risingstack/jaeger": "^2.5.0",
     "body-parser": "^1.18.2",

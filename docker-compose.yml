@@ -1,6 +1,6 @@
 version: "3"
 services:
-  mini-shop:
+  regress-helper:
     build: .
     environment: 
       - DB_HOST=mysql
@@ -24,8 +24,8 @@ services:
     ports: 
       - "3306:3306"
   syslog:
-    build: ./syslogdummy/
-    container_name: syslog
+    build: ./syslog/
+    container_name: syslog-regress
     restart: always
     ports:
       - "514:514/udp"
