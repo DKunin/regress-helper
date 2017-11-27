@@ -2,7 +2,7 @@ FROM node:8-alpine
 
 EXPOSE 9009
 
-
+ENV NODE_ENV=production
 
 WORKDIR /src
 
