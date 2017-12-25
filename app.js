@@ -18,6 +18,10 @@ dbConnection
             res.sendStatus(200);
         });
 
+        // app.get('/', function(req, res) {
+        //     res.send('ok');
+        // });
+
         const testUserRouter = new TestUserHandler(db, logger).getRouter();
 
         app.use('/v1/testUsers', testUserRouter);

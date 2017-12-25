@@ -1,6 +1,6 @@
 FROM node:8-alpine
 
-EXPOSE 9009
+EXPOSE 8080
 
 ENV NODE_ENV=production
 

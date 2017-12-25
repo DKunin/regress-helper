@@ -8,7 +8,7 @@ module.exports = {
     port: {
         doc: 'port of the app',
         format: 'port',
-        default: 9009,
+        default: 8080,
         env: 'PORT'
     },
     db: {
@@ -46,25 +46,25 @@ module.exports = {
     },
     logger: {
         name: {
-            doc:'',
+            doc: '',
             format: String,
             default: 'udptest',
             env: 'SYSLOG_NAME'
         },
         host: {
-            doc:'',
+            doc: '',
             format: String,
             default: 'localhost',
             env: 'SYSLOG_HOST'
         },
         port: {
-            doc:'port',
+            doc: 'port',
             format: 'port',
             default: 514,
             env: 'SYSLOG_PORT'
         },
         facility: {
-            doc:'',
+            doc: '',
             format: String,
             default: 'user',
             env: 'SYSLOG_FACILITY'
