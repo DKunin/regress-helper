@@ -5,9 +5,9 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "up": "docker-compose up -d --build",
-	"halt": "docker-compose down",
-	"test": "echo \"Error: no test specified\" && exit 1"
+    "up": "docker-compose up -d",
+  	"down": "docker-compose down -v",
+  	"test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "dkunin",
   "license": "MIT",

@@ -1,5 +1,6 @@
 version: "3"
 services:
+
   regresshelper:
     build: .
     container_name: regresshelper
@@ -14,16 +15,16 @@ services:
     restart: always
     ports:
       - "8080"
-  # metrics:
-  #   image: hopsoft/graphite-statsd
-  #   ports:
-  #     - "80:80"
+
   mysql:
     image: mysql
     environment:
       - MYSQL_ROOT_PASSWORD=secret
     ports: 
       - "3306:3306"
+    volumes:
+      - ~/storage/docker:/var/lib/mysql
+
   syslog:
     build: ./syslog/
     container_name: syslog-regress
@@ -46,3 +47,7 @@ services:
       - ./public:/var/www/
       - ./auth/nginx.conf:/etc/nginx/nginx.conf
       - ./auth/nginx.htpasswd:/etc/nginx/conf.d/nginx.htpasswd
+  # metrics:
+  #   image: hopsoft/graphite-statsd
+  #   ports:
+  #     - "80:80"
