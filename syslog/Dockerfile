@@ -1,6 +1,6 @@
 FROM gliderlabs/alpine
 
-EXPOSE 514/udp
+EXPOSE 515/udp
 
 RUN apk --update add rsyslog && rm -rf /var/cache/apk/*
 

@@ -29,7 +29,7 @@ services:
     container_name: syslog-regress
     restart: always
     ports:
-      - "514:514/udp"
+      - "515:515/udp"
 
   nginx:
     image: "nginx:alpine"
