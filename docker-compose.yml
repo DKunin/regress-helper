@@ -11,7 +11,7 @@ services:
       - SYSLOG_HOST=syslog
     depends_on:
       - mysql
-      # - syslog
+      - syslog
     restart: always
     ports:
       - "8080"
@@ -25,12 +25,12 @@ services:
     volumes:
       - ~/storage/docker:/var/lib/mysql
 
-  # syslog:
-  #   build: ./syslog/
-  #   container_name: syslog-regress
-  #   restart: always
-  #   ports:
-  #     - "514:514/udp"
+  syslog:
+    build: ./syslog/
+    container_name: syslog-regress
+    restart: always
+    ports:
+      - "514:514/udp"
 
   nginx:
     image: "nginx:alpine"
