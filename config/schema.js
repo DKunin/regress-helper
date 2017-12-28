@@ -60,7 +60,7 @@ module.exports = {
         port: {
             doc: 'port',
             format: 'port',
-            default: 514,
+            default: 515,
             env: 'SYSLOG_PORT'
         },
         facility: {
